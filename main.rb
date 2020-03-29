@@ -15,13 +15,14 @@ end
 
 
 # insert
+User.delete_all
+User.create(name: "tanaka", age: 19)
+User.create(name: "takahasi", age: 25)
+User.create(name: "hayashi", age: 31)
+User.create(name: "mizutani", age: 28)
+User.create(name: "otsuka", age: 35)
 
-user = User.new
-user.name = "tanaka"
-user.age = 23
-user.save
-
-user = User.new(name: "hayashi", age: 25)
-user.save
-
-User.create(name: "hoshi", age: 22)
+pp User.select("id, name, age").all
+pp User.select("id, name, age").first
+pp User.select("id, name, age").first(3)
+pp User.select("id, name, age").last
