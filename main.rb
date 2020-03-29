@@ -22,9 +22,21 @@ User.create(name: "hayashi", age: 31)
 User.create(name: "mizutani", age: 28)
 User.create(name: "otsuka", age: 35)
 
-# pp User.select("id, name, age").find(3)
-# pp User.select("id, name, age").find_by name: "tanaka"
-# pp User.select("id, name, age").find(3)
-# pp User.select("id, name, age").find_by_name("tanaka")
-# pp User.select("id, name, age").find_by_name("kiria")
-pp User.select("id, name, age").find_by_name!("kiria")
+# where
+
+# pp User.select("id, name, age").where(age: 20..29)
+# pp User.select("id, name, age").where(age: [19, 31])
+# pp User.select("id, name, age").where("age >= 20 and age < 30")
+
+
+# OR
+
+# pp User.select("id, name, age").where("age <= 20 or age >= 30")
+# pp User.select("id, name, age").where("age <= 20").or(User.select("id, name, age").where("age >= 30"))
+# pp User.where("age <= 20").or(User.where("age >= 30")).select("id, name, age")
+
+
+#NOT
+
+pp User.select("id, name, age").where.not(id: 3)
+
